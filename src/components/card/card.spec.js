@@ -39,6 +39,12 @@ describe('card', async () => {
     expect(cardBodyEl.classList.contains('card-img-overlay')).toBe(true)
   })
 
+  it('should accept a user defined card class', async() => {
+    const { app: { $refs } } = window
+    expect($refs.card_with_class).toHaveClass('card')
+    expect($refs.card_with_class).toHaveClass('custom-card')
+  });
+
   it('should contain text content', async () => {
     const { app: { $refs } } = window
 

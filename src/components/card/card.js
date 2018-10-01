@@ -16,6 +16,12 @@ cardImgProps.imgSrc.required = false
 
 export const props = assign(
   {},
+  {
+    cardClass: {
+      type: [String, Object, Array],
+      default: null
+    }
+  },
   bodyProps,
   headerProps,
   footerProps,
@@ -83,12 +89,15 @@ export default {
       props.tag,
       mergeData(data, {
         staticClass: 'card',
-        class: {
-          [`text-${props.align}`]: Boolean(props.align),
-          [`bg-${props.bgVariant}`]: Boolean(props.bgVariant),
-          [`border-${props.borderVariant}`]: Boolean(props.borderVariant),
-          [`text-${props.textVariant}`]: Boolean(props.textVariant)
-        }
+        class: [
+          {
+            [`text-${props.align}`]: Boolean(props.align),
+            [`bg-${props.bgVariant}`]: Boolean(props.bgVariant),
+            [`border-${props.borderVariant}`]: Boolean(props.borderVariant),
+            [`text-${props.textVariant}`]: Boolean(props.textVariant)
+          },
+          props.cardClass || {}
+        ]
       }),
       childNodes
     )
